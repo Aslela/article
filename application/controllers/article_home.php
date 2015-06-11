@@ -22,5 +22,16 @@ class Article_Home extends CI_Controller {
         $data['msg'] = null;
 		$this->load->view('includes/template', $data);		
 	}
+<<<<<<< HEAD
+=======
+    function test()
+    {
+        $data['article']=$this->article->get_article_list();
+        echo '<pre>'.print_r($data['article']).'</pre>';
+
+        $data['detail']=$this->article->get_article_comments(20,0,1);
+        echo '<pre>'.print_r($data['detail']).'</pre>';
+    }
+>>>>>>> origin/master
 	
 }
