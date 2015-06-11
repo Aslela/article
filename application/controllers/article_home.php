@@ -15,7 +15,7 @@ class Article_Home extends CI_Controller {
 	function index($start=1)
 	{
 		$this->load->model('article','article_model');
-        $data['data_article'] = $this->article_model->get_article_list(null, null);
+        $data['data_article'] = $this->article_model->getArticleList(null, null);
         
         $data['main_content'] = 'article_list_view';
         $data['data'] = null;
