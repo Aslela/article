@@ -21,5 +21,11 @@
 			$query=$this->db->get();
 			return $query->result_array();
 		}
+
+		function insert_comment()
+		{
+			$this->db->insert('tbl_article_t_comment',$data);
+			return $this->db->insert_id();
+		}
 	}
 ?>
