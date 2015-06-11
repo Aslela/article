@@ -10,6 +10,7 @@ class Article_Home extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library("pagination");
         
+        $this->load->model('article');
     }
     
 	function index($start=1)
@@ -21,5 +22,10 @@ class Article_Home extends CI_Controller {
         $data['msg'] = null;
 		$this->load->view('includes/template', $data);		
 	}
+    function test()
+    {
+        $data['article']=$this->article->get_article_list();
+        echo '<pre>'.print_r($data['article']).'</pre>';
+    }
 	
 }
