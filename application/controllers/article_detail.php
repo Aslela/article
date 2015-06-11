@@ -16,7 +16,7 @@ class Article_Detail extends CI_Controller {
 	{
 		//$this->load->model('login_model');
 
-        $data['main_content'] = 'master/kategori_list_view';
+        $data['main_content'] = 'article_detail_view';
         $data['data'] = null;
         $data['msg'] = null;
 		$this->load->view('includes/template', $data);		

@@ -10,7 +10,7 @@
         echo link_tag('css/article.css');
         
 	?>
-    <script src="<?php echo base_url(); ?>js/jquery..min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.js" type="text/javascript"></script>	
     
 
@@ -34,7 +34,7 @@
    	<div class="container">
 		<div class="row">	
             <div class="content-container col-md-9 col-md-9">
-               <?php $this->load->view($main_content); ?>
+               <?php $this->load->view($main_content, $data_article); ?>
             </div><!--Content Containter-->
             
             <div class="advertise col-md-3 col-lg-3">
