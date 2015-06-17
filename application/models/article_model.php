@@ -42,7 +42,7 @@
 
 		function getArticleComments($num=20, $start=0, $articleID)
 		{
-			$this->db->select('DATE_FORMAT(tbl_cyberits_t_comment.created,\'%d %M %Y\') AS created, name, rating, comment');
+			$this->db->select('DATE_FORMAT(tbl_cyberits_t_comments.created,\'%d %M %Y\') AS created, name, rating, comment');
             $this->db->from('tbl_cyberits_t_comments');
             $this->db->join('tbl_cyberits_t_articles', 'tbl_cyberits_t_articles.articleID = tbl_cyberits_t_comments.articleID');
             $this->db->where(array('tbl_cyberits_t_articles.isActive'=> true,'tbl_cyberits_t_articles.articleID'=>$articleID));
