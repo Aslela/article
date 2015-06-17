@@ -13,7 +13,7 @@
 	{
 		function getArticleList($num=20, $start=0)
 		{
-			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %b %y\') AS created ,username ,view ,LEFT(content, \'100\') AS content ,AVG(rating) as ratingPerArticle, categoryImgLink');
+			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,LEFT(content, \'100\') AS content ,AVG(rating) as ratingPerArticle, categoryImgLink');
             $this->db->from('tbl_cyberits_t_articles');
             $this->db->join('tbl_cyberits_m_users', 'tbl_cyberits_m_users.userID = tbl_cyberits_t_articles.authorID');
             $this->db->join('tbl_cyberits_t_comments','tbl_cyberits_t_comments.articleID = tbl_cyberits_t_articles.articleID','left' );
@@ -28,7 +28,7 @@
 
 		function getArticleDetail($articleID)
 		{
-			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %b %y\') AS created ,username ,view ,content ,AVG(rating) as ratingPerArticle, articleImgLink, userImgLink');
+			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,content ,AVG(rating) as ratingPerArticle, articleImgLink, userImgLink');
             $this->db->from('tbl_cyberits_t_articles');
             $this->db->join('tbl_cyberits_m_users', 'tbl_cyberits_m_users.userID = tbl_cyberits_t_articles.authorID');
             $this->db->join('tbl_cyberits_t_comments','tbl_cyberits_t_comments.articleID = tbl_cyberits_t_articles.articleID','left' );
