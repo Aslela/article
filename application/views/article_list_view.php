@@ -1,3 +1,8 @@
+        
+<?php $this->load->helper('HTML');	
+        echo link_tag('css/article.css');
+?>
+
   <?php 
     $no=0;
     foreach ($data_article as $row){
@@ -75,7 +80,7 @@
 			</p>
 							
 			<div class="btn-group">
-				<a href="#"><button type="button" class="btn btn-info"> Read More..</button></a>
+				<a href="<?php echo base_url(); ?>index.php/article/getArticleDetail/<?=$row['articleID']?>"><button type="button" class="btn btn-info"> Read More..</button></a>
 			</div>
                 
 		</div>

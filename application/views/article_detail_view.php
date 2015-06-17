@@ -8,51 +8,16 @@
 <script src="<?php echo base_url(); ?>js/jquery.barrating.js" type="text/javascript"></script>
 
 <div class="row content" id="content-1">
-	<h1>TITLE</h1>
-						
-    <div class="row">
-        <div class="col-md-4 col-lg-4">
-            <h4>Month, 99 2015 by <b>Mr.X</b></h4>
-        </div>
-									
-		<div class="col-md-4 col-lg-4 viewer">
-            <h4>view: 111</h4>
-		</div>
-							
-		<div class="col-md-4 col-lg-4">
-			<h4 class="float-left">Rating : </h4>
-				<select id="rate-top">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
-		</div>
-	</div><!-- -->
+	<h1><?=$data_article[0]['title'];?></h1>
 						
 	<div class="row">
 		<div class="col-md-12 col-lg-12 img-content">
-			<img class="img-responsive" src="<?php echo base_url(); ?>img/url.jpg" height="200">
+			<img class="img-responsive" src="<?php echo base_url(); ?>img/<?=$data_article[0]['articleImgLink'];?>">
+          
 		</div>
 							
 		<div class="col-md-12 col-lg-12 desc">
-			<p>
-			Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-			</p>
-								
-			<p>
-			Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-			</p>
-								
-			<p>
-			Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-			</p>
-								
-			<p>
-			Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-			</p>
-								
+		    <?=$data_article[0]['content'];?>				
 		</div>
 	</div>
 </div><!--Content-->
@@ -79,63 +44,60 @@
 
 <div class="row" id="author">
 	<div class="author-img">
-		<img class="img-responsive" src="<?php echo base_url(); ?>img/ironman.jpg" height="70">
+		<img class="img-responsive" src="<?php echo base_url(); ?>img/<?=$data_article[0]['userImgLink'];?>" height="70">
 	</div>
 	<div class="author-detail">
-		<h4>Iron Man</h4>
+		<h4><?=$data_article[0]['created'];?> by <b><?=$data_article[0]['username'];?></b></h4>
+        <h4>view: <?=$data_article[0]['view'];?></h4>
+        <h4 class="float-left">Rating : </h4>
+		      <select id="rate-top">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
 	</div>
 </div><!--Author-->
 
 <div class="row comment">
-	<div class=" row comment-content">
+	
+    <?php 
+        $no=0;
+        foreach ($data_comment as $row){
+        $no++;
+    ?>
+    <div class=" row comment-content">
 		<div class="row">
 			<div class="col-md-6 col-lg-6">
-				<h4>Month, 99 2015 by <b>Mr.X</b><h4>
+				<h4><?=$row['created'];?> by <b><?=$row['name'];?></b><h4>
 			</div>
 			<div class="col-md-6 col-lg-6 comment-user">	
 				<h4>Rate<h4>
-					<select class="rating">
-                        <option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+                    <div class="rating-star">
+                    <?php 
+                        for($i=1;$i<=5;$i++){
+                            if($i==$row['rating']){
+                                echo '<input class="star" name="star'.$no.'" type="radio" value="'.$i.'" disabled="disabled" checked="checked"/>';
+                               
+                            }else{
+                                echo '<input class="star" name="star'.$no.'" type="radio" value="'.$i.'" disabled="disabled"/>';
+                            }
+                        }
+                    ?>
+                    </div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-9 col-lg-9">
-			     <p>
-			     Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-                 </p>
+			   <p><?=$row['comment'];?></p>
 			</div>
 		</div>	
 	</div><!--Comment Content-->
-							
-	<div class=" row comment-content">
-		<div class="row">
-			<div class="col-md-6 col-lg-6">
-				<h4>Month, 99 2015 by <b>Mr.X</b><h4>
-			</div>
-			<div class="col-md-6 col-lg-6 comment-user">	
-				<h4>Rate<h4>
-					<select class="rating">
-                        <option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-9 col-lg-9">
-			     <p>
-			     Bacon ipsum dolor amet deserunt ham capicola rump bacon cow ad prosciutto pork belly nostrud officia ham hock dolore. In ad excepteur sint, leberkas exercitation venison dolore aliquip rump ribeye short ribs boudin. Ex prosciutto enim alcatra tempor jowl drumstick landjaeger sunt bacon ipsum. Dolor swine landjaeger, turducken sausage beef ribs anim labore.
-                 </p>
-			</div>
-		</div>	
-	</div><!--Comment Content-->
+	 <?php 
+        }
+     ?>
+    						
 </div><!--Comment Container-->
 
 <!--Comment Form-->
