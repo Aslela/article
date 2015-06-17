@@ -13,7 +13,7 @@
 	{
 		function getArticleList($num=20, $start=0)
 		{
-			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,LEFT(content, \'100\') AS content ,AVG(rating) as ratingPerArticle, categoryImgLink');
+			$this->db->select('tbl_cyberits_t_articles.articleID as articleID, title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,LEFT(content, \'100\') AS content ,AVG(rating) as ratingPerArticle, categoryImgLink');
             $this->db->from('tbl_cyberits_t_articles');
             $this->db->join('tbl_cyberits_m_users', 'tbl_cyberits_m_users.userID = tbl_cyberits_t_articles.authorID');
             $this->db->join('tbl_cyberits_t_comments','tbl_cyberits_t_comments.articleID = tbl_cyberits_t_articles.articleID','left' );
@@ -41,10 +41,10 @@
 
 		function getArticleComments($num=20, $start=0, $articleID)
 		{
-			$this->db->select('DATE_FORMAT(tbl_cyberits_t_comment.created,\'%d %b %y\') AS created, name, rating, comment');
-            $this->db->from('tbl_cyberits_t_comment');
+			$this->db->select('DATE_FORMAT(tbl_cyberits_t_comment.created,\'%d %M %Y\') AS created, name, rating, comment');
+            $this->db->from('tbl_cyberits_t_comments');
             $this->db->where(array('tbl_cyberits_t_articles.isActive'=> true,'tbl_cyberits_t_articles.articleID'=>$articleID));
-            $this->db->order_by('tbl_cyberits_t_comment.created');
+            $this->db->order_by('tbl_cyberits_t_comments.created');
             $this->db->limit($num,$start);
 			$query=$this->db->get();
 			return $query->result_array();
