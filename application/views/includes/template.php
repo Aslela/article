@@ -7,12 +7,11 @@
     <!-- Header style --> 
     <?php $this->load->helper('HTML');	
         echo link_tag('css/bootstrap.css');
-        echo link_tag('css/article.css');
-        
+        echo link_tag('css/jquery.rating.css');
 	?>
-    <script src="<?php echo base_url(); ?>js/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.js" type="text/javascript"></script>	
-    
+    <script src="<?php echo base_url(); ?>js/jquery.rating.pack.js" type="text/javascript"></script>	
 
     <title>Inventory Ikang</title>
 </head>
@@ -34,7 +33,7 @@
    	<div class="container">
 		<div class="row">	
             <div class="content-container col-md-9 col-md-9">
-               <?php $this->load->view($main_content, $data_article); ?>
+               <?php $this->load->view($main_content); ?>
             </div><!--Content Containter-->
             
             <div class="advertise col-md-3 col-lg-3">
