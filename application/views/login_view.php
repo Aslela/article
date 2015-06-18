@@ -1,9 +1,9 @@
 <html>
 <head>
-	<title>Backend Logon Panel</title>
+	<title>Backend Panel Login Page</title>
 </head>
 <body>
-	<h1>Admin Logon Panel</h1>
+	<h1>Admin Panel Login</h1>
 	<?php  
 	if($error==1)
 	{
@@ -12,7 +12,7 @@
 	<?php
 	}
 	?>
-	<form action="<?=base_url()?>index.php/backend/backend_panel" method="post">
+	<form action="<?=base_url()?>index.php/user/backend_panel_login" method="post">
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username" />
 		<br/>

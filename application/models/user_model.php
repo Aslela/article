@@ -14,7 +14,8 @@
 		{
 			$where=array(
 				'username'=>$username,
-				'password'=>sha1($password)
+				'password'=>sha1($password),
+                'isActive'=>TRUE
 			);
 			$this->db->select()->from('tbl_cyberits_m_users')->where($where);
 			$query=$this->db->get();

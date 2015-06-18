@@ -44,7 +44,7 @@
 	</style>
 </head>
 <body>
-    <h1>Admin Panel</h1>
+    <h1>Member Panel</h1>
 	<div id="user_info">
 		<?php  
 			$userID=$this->session->userdata('userID');
@@ -60,12 +60,10 @@
 	</div>
 	<div id="backend_list">
 		<ul>
-            <li><a href="#">User List</a></li>
-            <li><a href="#">User Insert</a></li>
-			<li><a href="#">Category List</a></li>
-			<li><a href="#">Category Insert</a></li>			
-            <li><a href="#">Tag List</a></li>
-			<li><a href="#">Tag Insert</a></li>
+            <li><a href="#">Category List</a></li>
+			<li><a href="#">Category Insert</a></li>
+			<li><a href="#">Tag List</a></li>
+			<li><a href="#">Tag Insert</a></li>			
 			<li><a href="#">Article List</a></li>
 			<li><a href="<?=base_url() ?>index.php/backend/article_insert">Article insert</a></li>
 		</ul>
