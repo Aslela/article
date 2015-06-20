@@ -9,6 +9,17 @@
     2. getArticleDetail     Mendapatkan detail untuk suatu artikel tertentu
     3. getArticleComments   Mendapatkan daftar komentar pada suatu artikel tertentu
     */
+	
+	 /*
+    ===================================================================================
+    Created By         Vicky                  on 20/06/2015
+    Model              Article_Model    	
+    ===================================================================================
+    functions :
+    1. insertComment       Memasukan komentar baru
+    */
+	
+	
 	class Article_Model extends CI_Model
 	{
 		function getArticleList($num=20, $start=0)
@@ -29,7 +40,7 @@
 
 		function getArticleDetail($articleID)
 		{
-			$this->db->select('title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,content ,AVG(rating) as ratingPerArticle, articleImgLink, userImgLink');
+			$this->db->select('tbl_cyberits_t_articles.articleID as articleID,title, DATE_FORMAT(tbl_cyberits_t_articles.created,\'%d %M %Y\') AS created ,username ,view ,content ,AVG(rating) as ratingPerArticle, articleImgLink, userImgLink');
             $this->db->from('tbl_cyberits_t_articles');
             $this->db->join('tbl_cyberits_m_users', 'tbl_cyberits_m_users.userID = tbl_cyberits_t_articles.authorID');
             $this->db->join('tbl_cyberits_t_comments','tbl_cyberits_t_comments.articleID = tbl_cyberits_t_articles.articleID','left' );
@@ -51,11 +62,12 @@
 			$query=$this->db->get();
 			return $query->result_array();
 		}
-/*
-		function insertComment()
+		
+		function insertComment($data)
 		{
-			$this->db->insert('tbl_article_t_comment',$data);
-			return $this->db->insert_id();
-		}*/
+			$this->db->insert('tbl_cyberits_t_comments',$data);
+			$result=$this->db->affected_rows();
+            return $result;
+		}
 	}
 ?>

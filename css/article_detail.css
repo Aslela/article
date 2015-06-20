@@ -109,6 +109,10 @@ p{
 	margin-right:10px;
 }
 
+#star-rating-avg{
+    margin-top: 23px;
+}
+
 .comment{
 	background-color:white;
 	padding-left : 15px;
@@ -140,6 +144,17 @@ p{
 .comment-form{
 	width : 50%;
 	padding-bottom:20px;
+}
+
+.form-submit-group{
+    margin-top:30px;
+}
+
+.err-msg{
+    margin-left:10px;
+    color: #A94442;
+    font-weight: bold;
+    display:none;
 }
 
 /******* Rating Css *******/

@@ -50,13 +50,18 @@
 		<h4><?=$data_article[0]['created'];?> by <b><?=$data_article[0]['username'];?></b></h4>
         <h4>view: <?=$data_article[0]['view'];?></h4>
         <h4 class="float-left">Rating : </h4>
-		      <select id="rate-top">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
+	       <div id="star-rating-avg">
+              <?php 
+                   for($i=1;$i<=5;$i++){
+                       if($i==floor($data_article[0]['ratingPerArticle'])){
+                            echo '<input class="star" name="star-avg" type="radio" value="'.$i.'" disabled="disabled" checked="checked"/>';
+                               
+                       }else{
+                            echo '<input class="star" name="star-avg" type="radio" value="'.$i.'" disabled="disabled"/>';
+                       }
+                   }
+                ?>
+            </div>
 	</div>
 </div><!--Author-->
 
@@ -103,62 +108,45 @@
 <!--Comment Form-->
 <div class="row comment-form-wrapper">		
 	<h3>Post Your Comment Here : </h3>
-	<div class="comment-form">
-		<form>
-			<div class="form-group">
-                <label for="name-comment">Name</label>
-			    <input type="text" class="form-control" id="name" placeholder="Name">
+	<?php if(validation_errors()) { ?>
+    <div class="alert alert-warning">
+    <?php echo validation_errors(); ?>
+    </div>
+    <?php } ?>
+    <div class="comment-form">
+		<?php echo form_open(); ?>
+			<input type="hidden" name="article_id" class="form-control" id="article-id" value="<?=$data_article[0]['articleID'];?>">
+            <div class="form-group">
+                <label for="Name">Name</label><span class="err-msg" id="err-name-msg">name must be filled!</span>
+			    <input type="text" name="name" class="form-control" id="name" placeholder="Name">
 			</div>
 									  
 			<div class="form-group">
-				<label for="input-email">Email address</label>
-				<input type="email" class="form-control" id="email" placeholder="Enter email">
+				<label for="Email">Email</label><span class="err-msg" id="err-email-msg">invalid email!</span>
+				<input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                
 			</div>
 			<div class="form-group">
-				<label for="input-comment">Comment</label>
-				<textarea type="password" class="form-control" id="comment" placeholder="Comment here ..."></textarea>
+				<label for="Comment">Comment</label><span class="err-msg" id="err-comment-msg">comment must be filled!</span>
+				<textarea class="form-control" id="comment" name="comment" placeholder="Comment here ..."></textarea>
+                
 			</div>
 									  
 			<div class="form-group">
-				<label for="input-rating">Rating</label>
-					<select id="rate-bottom">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+				<label for="Rating">Rating</label><span class="err-msg" id="err-rate-msg"> must be rate!</span>
+					<div>
+                        <input class="star" name="star-comment" type="radio" value="1"/>
+                        <input class="star" name="star-comment" type="radio" value="2"/>
+                        <input class="star" name="star-comment" type="radio" value="3"/>
+                        <input class="star" name="star-comment" type="radio" value="4"/>
+                        <input class="star" name="star-comment" type="radio" value="5"/>
+                    </div>
+                    
 			</div>
-									  
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+			
+            <div class="form-submit-group">						  
+			 <button type="submit" class="btn btn-default" id="submit-comment">Submit</button>
+            </div>
+		<?php echo form_close(); ?>
 	</div><!--Comment Form -->		
 </div><!--Comment Container -->		
-
-<script>
-	$(function() {
-		function ratingEnable() {
-			$('#rate-top').barrating({
-				wrapperClass: 'br-wrapper-f',
-				showSelectedRating: false,
-				readonly: true
-			});
-			
-			$('#rate-top').barrating('set', 3);
-			
-			$('.rating').barrating({
-				wrapperClass: 'br-wrapper-f',
-				showSelectedRating: false,
-				readonly: true
-			});
-			$('.rating').barrating('set', 3);
-			
-			$('#rate-bottom').barrating({
-				wrapperClass: 'br-wrapper-f',
-				showSelectedRating: false
-			});
-		}
-
-		ratingEnable();
-	});
-</script>
